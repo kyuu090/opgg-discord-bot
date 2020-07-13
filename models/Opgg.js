@@ -12,16 +12,23 @@ module.exports =
         const body = await this.doRequest(option);
 
         for (const [key, championElement] of Object.entries(body.data)) {
-            if(championElement.name.indexOf(JpName) !== -1) {
-                champion = championElement;
+            if(championElement.name === JpName) {
+                return championElement.id.toLowerCase();
             }
         }
 
-        return champion.id.toLowerCase();
+        for (const [key, championElement] of Object.entries(body.data)) {
+            if(championElement.name.indexOf(JpName) !== -1) {
+                return championElement.id.toLowerCase();
+            }
+        }
+        return undefined;
     }
     async champion (championName) {
         const championNameEnglish = await this.convertChampNameFromJpToEnglish(championName);
-        console.log("name: ", championNameEnglish);
+        if(championNameEnglish === undefined) {
+            return "使い方例) @opgg アッシュ"
+        }
         return `https://jp.op.gg/champion/${championNameEnglish}/statistics`;
     }
 
