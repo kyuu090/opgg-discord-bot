@@ -27,7 +27,7 @@ module.exports =
     async champion (championName) {
         const championNameEnglish = await this.convertChampNameFromJpToEnglish(championName);
         if(championNameEnglish === undefined) {
-            return "使い方例) @opgg アッシュ"
+            return "チャンピオンが見つかりません"
         }
         return `https://jp.op.gg/champion/${championNameEnglish}/statistics`;
     }
