@@ -18,7 +18,7 @@ module.exports = class Bot {
         if(championName !== undefined) {
             message.reply(url).then(() => console.log("Sent message: ", url));
         } else {
-            const replyText = "チャンピオン名を入れてくれ\nexample) @opgg アッシュ";
+            const replyText = "チャンピオン名を指定してください\n使い方例) @opgg アッシュ";
             message.reply(replyText).then(() => console.log("Sent message: ", replyText));
         }
     }
